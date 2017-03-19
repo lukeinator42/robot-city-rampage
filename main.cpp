@@ -14,8 +14,6 @@
 Landscape landscape(0.0f, 102.0f, 102);
 
 
-
-
 void draw(void) {
     // User defined init
 
@@ -54,7 +52,6 @@ int main(int argc, char **argv) {
     glutDisplayFunc(draw);
 
 
-    landscape.initLandScape();
     landscape.drawCityGround();
     
     // Loop require by OpenGL
