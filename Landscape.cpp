@@ -36,3 +36,7 @@ void Landscape::drawCityGround()
     }
 }
 
+void Landscape::draw() {
+
+}
+

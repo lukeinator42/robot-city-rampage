@@ -13,6 +13,8 @@ public:
 
     void drawCityGround();
 
+    void draw();
+
 
 private:
     const float MIN;

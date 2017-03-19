@@ -11,8 +11,14 @@
 #include <string.h>
 #include "Landscape.h"
 
+Landscape landscape(0.0f, 102.0f, 102);
+
+
+
 
 void draw(void) {
+    // User defined init
+    landscape.draw();
 
     // Black background
     glClearColor(0.0f,0.0f,0.0f,1.0f);
@@ -47,10 +53,8 @@ int main(int argc, char **argv) {
     //Call to the drawing function
     glutDisplayFunc(draw);
 
-    // User defined init
-    Landscape landscape(0.0f, 102.0f, 102);
+
     landscape.initLandScape();
-    
 
     
     // Loop require by OpenGL
