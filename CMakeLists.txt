@@ -25,7 +25,7 @@ endif(NOT OPENGL_FOUND)
 #########################################################
 # Include Files
 #########################################################
-add_executable(test main.cpp Landscape.cpp Landscape.h)
+add_executable(test main.cpp Landscape.cpp Landscape.h Robot.cpp Robot.h Building.cpp Building.h BuildingFactory.cpp BuildingFactory.h)
 
 ########################################################
 # Linking & stuff

@@ -18,7 +18,7 @@ Landscape landscape(0.0f, 102.0f, 102);
 
 void draw(void) {
     // User defined init
-    landscape.draw();
+
 
     // Black background
     glClearColor(0.0f,0.0f,0.0f,1.0f);
@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
 
 
     landscape.initLandScape();
-
+    landscape.drawCityGround();
     
     // Loop require by OpenGL
     glutMainLoop();
