@@ -9,7 +9,6 @@
 class Landscape {
 public:
     Landscape(const float min, const float max, const int grid_size);
-    void initLandScape();
 
     void drawCityGround();
 
