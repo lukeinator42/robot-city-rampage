@@ -8,6 +8,14 @@
 #  include <GL/glut.h>
 #endif
 
+#include <string.h>
+
+
+const float MIN = 0.f;
+const float MAX = 101.f;
+
+int CITY[102][102][2];
+
 void draw(void) {
 
     // Black background
@@ -17,6 +25,20 @@ void draw(void) {
 
     glutSwapBuffers();
 }
+
+void initLandScape()
+{
+   // init the stored city
+   memset(CITY, -1, sizeof CITY);
+}
+
+void drawCityGround()
+{
+   glBegin(GL_QUADS);
+
+}
+
+
 
 //Main program
 
@@ -38,10 +60,14 @@ int main(int argc, char **argv) {
     //Create Window
     glutCreateWindow("Robot City Rampage!!");
 
-
     //Call to the drawing function
     glutDisplayFunc(draw);
 
+    // User defined init
+    initLandScape();
+    
+
+    
     // Loop require by OpenGL
     glutMainLoop();
     return 0;
