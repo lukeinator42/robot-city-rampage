@@ -9,8 +9,7 @@
 #endif
 
 #include <string.h>
-
-
+#include "Landscape.h"
 
 
 void draw(void) {
@@ -49,7 +48,8 @@ int main(int argc, char **argv) {
     glutDisplayFunc(draw);
 
     // User defined init
-    initLandScape();
+    Landscape landscape(0.0f, 102.0f, 102);
+    landscape.initLandScape();
     
 
     

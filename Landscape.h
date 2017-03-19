@@ -11,8 +11,6 @@ public:
     Landscape(const float min, const float max, const int grid_size);
     void initLandScape();
 
-    const int getGRID_SIZE() const;
-
     void drawCityGround();
 
 
@@ -20,7 +18,9 @@ private:
     const float MIN;
     const float MAX;
     const int GRID_SIZE;
-    int CITY[GRID_SIZE][GRID_SIZE][2];
+    const int *GridSize;
+
+    int CITY[102][102][2];
 };
 
 

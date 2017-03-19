@@ -15,6 +15,7 @@
 #endif
 
 Landscape::Landscape(const float min, const float max, const int grid_size)  : MIN(min), MAX(max), GRID_SIZE(grid_size) {
+    GridSize = new int(grid_size);
 
 }
 
@@ -28,15 +29,10 @@ void Landscape::drawCityGround()
 {
     glBegin(GL_QUADS);
 
-    for(int i=0; i< GRID_SIZE; i++) {
-        for (int j = 0; j < GRID_SIZE; j++) {
+    for(int i=0; i< this->GRID_SIZE; i++) {
+        for (int j = 0; j < this->GRID_SIZE; j++) {
 
         }
     }
 }
 
-
-
-const int Landscape::getGRID_SIZE() const {
-    return GRID_SIZE;
-}
