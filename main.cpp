@@ -11,10 +11,7 @@
 #include <string.h>
 
 
-const float MIN = 0.f;
-const float MAX = 101.f;
 
-int CITY[102][102][2];
 
 void draw(void) {
 
@@ -24,18 +21,6 @@ void draw(void) {
 
 
     glutSwapBuffers();
-}
-
-void initLandScape()
-{
-   // init the stored city
-   memset(CITY, -1, sizeof CITY);
-}
-
-void drawCityGround()
-{
-   glBegin(GL_QUADS);
-
 }
 
 
