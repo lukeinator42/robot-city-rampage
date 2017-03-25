@@ -31,11 +31,11 @@ void Landscape::drawCityGround()
 
    // GREY GROUND
    glNormal3f(  0.0f,  1.0f,  0.0f );
-   glColor4f ( 128.f, 128.f, 128.f, 1.f);
-   glVertex3f(   MIN,   MIN,  0.0f );
-   glVertex3f(   MIN,   MAX,  0.0f );
-   glVertex3f(   MAX,   MAX,  0.0f );
-   glVertex3f(   MAX,   MIN,  0.0f );
+   glColor4f (  0.5f,  0.5f , 0.5f, 1.f);
+   glVertex3f(   MIN,   0.0f,  MIN );
+   glVertex3f(   MIN,   0.0f,  MAX );
+   glVertex3f(   MAX,   0.0f,  MAX );
+   glVertex3f(   MAX,   0.0f,  MIN );
 
    glEnd();
    
