@@ -15,12 +15,12 @@ Landscape landscape(-102.0f, 102.0f, 102);
 
 /* Look at Variables */
 float EyeX = 0;
-float EyeY = 1;
+float EyeY = 100;
 float EyeZ = 0;
 
-float LaX = 1;
+float LaX = 50;
 float LaY = 0;
-float LaZ = 1;
+float LaZ = -50;
 
 void draw(void) {
     glClearColor(0.0f,0.0f,0.0f,1.0f);
@@ -53,7 +53,7 @@ void reshape(int w, int h)
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glFrustum(0.0, 110.0, 0.0, 110.0, -5.0, 200.0);
+    glFrustum(0.0, 110.0, 0.0, 110.0, 0.0, 110.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
