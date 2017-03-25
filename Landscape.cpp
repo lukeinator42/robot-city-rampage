@@ -50,6 +50,7 @@ void Landscape::drawCityGround()
 	 glEnd();
       }
 
+   //adapted from http://cs.lmu.edu/~ray/notes/openglexamples/
    // draw Lines on the ground
    glColor3f(1.0, 1.0, 1.0);
    glBegin(GL_LINES);
