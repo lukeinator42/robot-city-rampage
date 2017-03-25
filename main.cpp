@@ -18,11 +18,7 @@ float EyeX = 0;
 float EyeY = 100;
 float EyeZ = 0;
 
-<<<<<<< HEAD
 float LaX = 50;
-=======
-float LaX = 0;
->>>>>>> 338306eac58210081d5b155f6625db7820d4a64f
 float LaY = 0;
 float LaZ = -50;
 
@@ -57,11 +53,9 @@ void reshape(int w, int h)
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-<<<<<<< HEAD
-    glFrustum(0.0, 110.0, 0.0, 110.0, 0.0, 110.0);
-=======
+
     glFrustum(-110.0, 110.0, 0.0, 110.0, 5.0, 200.0);
->>>>>>> 338306eac58210081d5b155f6625db7820d4a64f
+
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
@@ -71,14 +65,14 @@ void myClick(int button, int state, int x, int y){}
 void myCBKey(unsigned char key, int x, int y)
 {
    /* Eye at var */
-   if(key == 119){ EyeX += 0.5; } /* w */
-   if(key == 115){ EyeX -= 0.5; } /* s */
+   if(key == 119){ EyeX += 0.5; LaX += 0.5; } /* w */
+   if(key == 115){ EyeX -= 0.5; LaX -= 0.5; } /* s */
 
-   if(key == 101){ EyeY += 0.5; } /* e */
-   if(key == 113){ EyeY -= 0.5; } /* q */
+   if(key == 101){ EyeY += 0.5; LaY += 0.5; } /* e */
+   if(key == 113){ EyeY -= 0.5; LaY -= 0.5; } /* q */
 
-   if(key ==  97){ EyeZ += 0.5; } /* a */
-   if(key == 100){ EyeZ -= 0.5; } /* d */
+   if(key ==  97){ EyeZ += 0.5; LaZ += 0.5; } /* a */
+   if(key == 100){ EyeZ -= 0.5; LaZ -= 0.5; } /* d */
 
    /* Look at var */
    if(key == 105){ LaX += 0.5; } /* i */
