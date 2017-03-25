@@ -11,16 +11,16 @@
 #include <string.h>
 #include "Landscape.h"
 
-Landscape landscape(0.0f, 102.0f, 102);
+Landscape landscape(-102.0f, 102.0f, 102);
 
 /* Look at Variables */
-double EyeX = 0;
-double EyeY = 0;
-double EyeZ = 0;
+float EyeX = 0;
+float EyeY = 1;
+float EyeZ = 0;
 
-double LaX = 1;
-double LaY = 1;
-double LaZ = 1;
+float LaX = 1;
+float LaY = 0;
+float LaZ = 1;
 
 void draw(void) {
     glClearColor(0.0f,0.0f,0.0f,1.0f);
@@ -41,7 +41,7 @@ void draw(void) {
 
     landscape.drawCityGround();
 
-
+    glutWireCube(10.0f);
 
 
     glutSwapBuffers();
