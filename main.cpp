@@ -29,20 +29,12 @@ void draw(void) {
     // Black background
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-<<<<<<< HEAD
 
     gluLookAt(EyeX, EyeY, EyeZ,
 	       LaX,  LaY,  LaZ,
 	         0,    1,    0);
-=======
-
-
-    gluLookAt(EyeX, EyeY, EyeZ,
-              LaX,  LaY,  LaZ,
-              0,    1,    0);
 
     glMatrixMode(GL_MODELVIEW);
->>>>>>> 19ef24700afe8d17e49a2b4a3d4bf07747978c9c
 
     
     glMatrixMode(GL_MODELVIEW);
