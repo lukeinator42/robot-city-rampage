@@ -26,7 +26,31 @@ Landscape::Landscape(const float min, const float max, const int grid_size)
 
 void Landscape::drawCityGround()
 {
+   // draw the grey ground
+   glColor3f(0.5f, 0.5f, 0.5f);
+   glBegin(GL_QUADS);
+   glVertex3f(MIN, 0.f, MIN);
+   glVertex3f(MIN, 0.f, MAX);
+   glVertex3f(MAX, 0.f, MAX);
+   glVertex3f(MAX, 0.f, MIN);
+   glEnd();
 
+   
+
+   // draw the grass on the ground
+   for (GLfloat i = MIN+1; i < MAX; i+=6.f)
+      for (GLfloat j = MIN+1; j < MAX; j+=6.f)
+      {
+	 glColor3f (0.2f, 0.39f, 0.f);
+	 glBegin (GL_QUADS);
+	 glVertex3f (i    , 0.f, j    );
+	 glVertex3f (i    , 0.f, j+3.f);
+	 glVertex3f (i+3.f, 0.f, j+3.f);
+	 glVertex3f (i+3.f, 0.f, j    );
+	 glEnd();
+      }
+
+   // draw Lines on the ground
    glColor3f(1.0, 1.0, 1.0);
    glBegin(GL_LINES);
    for (GLfloat i = MIN; i <= MAX; i += 1.0) {
