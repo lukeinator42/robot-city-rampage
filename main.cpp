@@ -8,6 +8,7 @@
 #  include <GL/glut.h>
 #endif
 
+#include <iostream>
 #include <string.h>
 #include "Landscape.h"
 #include "Building.h"
@@ -18,74 +19,93 @@ Landscape landscape(-59.0f, 59.0f, 118);
 BuildingFactory buildingFactory(-59.0f, 59.0f, 118);
 
 /* Look at Variables */
-float EyeX = 0;
-float EyeY = 1;
-float EyeZ = -2;
+float EyeX = 0.f;
+float EyeY = 1.5f;
+float EyeZ = -2.f;
 
-float LaX = 0;
-float LaY = 0;
-float LaZ = 0;
+float LaX = 0.f;
+float LaY = 0.f;
+float LaZ = 0.f;
+
+float botX = 0.f;
+float botY = 0.f;
+float botZ = 0.f;
 
 
-
-
+int rotNorm = 0;
+float rot = 0.f;
+float pos[2][4] = { {0.f, -1.f,  0.f, 1.f},
+		    {1.f,  0.f, -1.f, 0.f} };
 
 void myClick(int button, int state, int x, int y){}
 
-void myCBKey(unsigned char key, int x, int y)
+void turn(bool direction)
 {
-   /* Eye at var */
-   if(key == 119){ EyeZ += 0.5; LaZ += 0.5; } /* w */
-   if(key == 115){ EyeZ -= 0.5; LaZ -= 0.5; } /* s */
-
-   if(key == 101){ EyeY += 0.05; LaY += 0.05; } /* e */
-   if(key == 113){ EyeY -= 0.05; LaY -= 0.05; } /* q */
-
-   if(key ==  97){ EyeX += 0.5; LaX += 0.5; } /* a */
-   if(key == 100){ EyeX -= 0.5; LaX -= 0.5; } /* d */
-
-   /* Look at var */
-   if(key == 105){ LaZ += 0.5; } /* i */
-   if(key == 107){ LaZ -= 0.5; } /* k */
-
-   if(key == 117){ LaY += 0.5; } /* u */
-   if(key == 111){ LaY -= 0.5; } /* o */
-
-   if(key == 106){ LaX += 0.5; } /* j */
-   if(key == 108){ LaX -= 0.5; } /* l */
+   float dir = -1;
+   if(direction)
+      dir = 1;
+   
+   if((int)botX % 6 == 0 && (int)botZ % 6 == 0)
+   {
+      // NOTE
+      // should be 90 in post
+      rot += (dir*90);
+      rotNorm = (rotNorm + (int)dir) % 4;
+   }
 }
 
 
+void myCBKey(unsigned char key, int x, int y)
+{
+   if(key == 122) /* z - push forward*/
+   {
+      botX += pos[0][rotNorm];
+      botZ += pos[1][rotNorm];
+      
+      EyeX += pos[0][rotNorm];
+      EyeZ += pos[1][rotNorm];
+
+      LaX += pos[0][rotNorm];
+      LaZ += pos[1][rotNorm];
+   }
+   
+   else if(key == 113){ turn(true);  } /* q - turn left*/
+   else if(key ==  97){ turn(false); } /* a - turn right*/
+   else
+      std::cout << "No function for key: " << key << "\n";  
+}
 
 void draw() {
 
     glClear(GL_COLOR_BUFFER_BIT);
 
     glMatrixMode(GL_MODELVIEW);
+    
     /* clear all pixels  */
     glClear (GL_COLOR_BUFFER_BIT);
-
-
 
     /* Clear the current matrix */
     glLoadIdentity();
 
     /* Viewing transformation */
-    gluLookAt(EyeX, EyeY, EyeZ,   /* Eye */
-              LaX, LaY, LaZ,   /* Look at */
+    gluLookAt(EyeX, EyeY, EyeZ,  /*  Eye  */
+              LaX, LaY, LaZ,    /* Look at */
               0.0, 1.0, 0.0);  /* Up vector */
 
 
     landscape.drawCityGround();
 
     buildingFactory.draw();
-
-    /* Set the color to black */
+    
+    /* temp robot */
+    glPushMatrix ();
     glColor3f (0.0, 0.0, 0.0);
-
-    glTranslatef(EyeX, 0, EyeZ+2);
-
-    glutSolidCube(0.25);
+    glTranslatef (botX, botY, botZ);
+    glRotatef (rot, 0.f, 1.f, 0.f);
+    glutSolidCube (0.25);
+    glLoadIdentity ();
+    glPopMatrix ();
+    /* end of temp-bot */
 
     glutSwapBuffers();
 }
@@ -99,9 +119,9 @@ void reshape(int w, int h)
     /* Projection transformation */
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glFrustum(-1.0, 1.0, /* Left and right boundary */
-              -1.0, 1.0, /* bottom and top boundary */
-              1.5, 200.0); /* near and far boundary */
+    glFrustum(-1.0, 1.0,   /* Left and right boundary */
+              -1.0, 1.0,   /* bottom and top boundary */
+              1.5, 200.0); /* near and far boundary   */
     glMatrixMode(GL_MODELVIEW);
 
 }
@@ -127,13 +147,11 @@ int main(int argc, char** argv) {
     glutCreateWindow("Robot City Rampage!!");
 
     //Call to the drawing function
-
     glutDisplayFunc(& draw);
     glutIdleFunc(& draw);
     glutMouseFunc(&myClick);
     glutKeyboardFunc(&myCBKey);
     glutReshapeFunc(& reshape);
-
 
     // Loop require by OpenGL
     glutMainLoop();
