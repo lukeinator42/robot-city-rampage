@@ -5,7 +5,6 @@
 #ifndef HW_OPENGL_LANDSCAPE_H
 #define HW_OPENGL_LANDSCAPE_H
 
-
 class Landscape {
 public:
     Landscape(const float min, const float max, const int grid_size);

@@ -13,6 +13,14 @@
 
 Landscape landscape(0.0f, 102.0f, 102);
 
+/* Look at Variables */
+int EyeX = 0;
+int EyeY = 0;
+int EyeZ = 0;
+
+int LaX = 1;
+int LaY = 1;
+int LaZ = 1;
 
 void draw(void) {
     // Black background
@@ -24,7 +32,9 @@ void draw(void) {
     // User defined init
     glFrustum(-10.0, 110.0, -10.0, 110.0, -10, 100.0);
 
-    gluLookAt(0, 5, 0, 50, 0, 50, 1, 0, 0);
+    gluLookAt(EyeX, EyeY, EyeZ,
+	       LaX,  LaY,  LaZ,
+	         0,    1,    0);
 
 
 
@@ -41,6 +51,32 @@ void reshape(int w, int h)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
+
+void myClick(int button, int state, int x, int y){}
+
+void myCBKey(unsigned char key, int x, int y)
+{
+   /* Eye at var */
+   if(key == 119){ EyeX += 5; } /* w */
+   if(key == 115){ EyeX -= 5; } /* s */
+   
+   if(key == 101){ EyeY += 5; } /* e */
+   if(key == 113){ EyeY -= 5; } /* q */
+   
+   if(key ==  97){ EyeZ += 5; } /* a */
+   if(key == 100){ EyeZ -= 5; } /* d */
+
+   /* Look at var */
+   if(key == 105){ LaX += 5; } /* i */
+   if(key == 107){ LaX -= 5; } /* k */
+   
+   if(key == 117){ LaY += 5; } /* u */
+   if(key == 111){ LaY -= 5; } /* o */
+   
+   if(key == 106){ LaZ += 5; } /* j */
+   if(key == 108){ LaZ -= 5; } /* l */   
+}
+
 
 //Main program
 
@@ -63,10 +99,12 @@ int main(int argc, char **argv) {
     glutCreateWindow("Robot City Rampage!!");
 
     //Call to the drawing function
+    
     glutDisplayFunc(draw);
-
+    glutIdleFunc(& draw);
+    glutMouseFunc(&myClick);
+    glutKeyboardFunc(&myCBKey);
     glutReshapeFunc(& reshape);
-
 
     
     // Loop require by OpenGL

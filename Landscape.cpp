@@ -4,6 +4,8 @@
 
 #include "Landscape.h"
 #include <algorithm>
+#include <string.h>
+
 #ifdef __APPLE__
 #  include <OpenGL/gl.h>
 #  include <OpenGL/glu.h>
@@ -28,7 +30,7 @@ void Landscape::drawCityGround()
    glBegin(GL_QUADS);
 
    // GREY GROUND
-   glNormal3f( 0.0f, 1.0f, 0.0f );
+   glNormal3f(  0.0f,  1.0f,  0.0f );
    glColor4f ( 128.f, 128.f, 128.f, 1.f);
    glVertex3f(   MIN,   MIN,  0.0f );
    glVertex3f(   MIN,   MAX,  0.0f );
