@@ -11,7 +11,7 @@
 #include <string.h>
 #include "Landscape.h"
 
-Landscape landscape(-102.0f, 102.0f, 205);
+Landscape landscape(-51.0f, 51.0f, 102);
 
 /* Look at Variables */
 float EyeX = 0;
@@ -70,13 +70,7 @@ void draw() {
               0.0, 1.0, 0.0);  /* Up vector */
 
 
-    glColor3f(1.0, 1.0, 1.0);
-    glBegin(GL_LINES);
-    for (GLfloat i = -51; i <= 51; i += 1.0) {
-        glVertex3f(i, 0, 51); glVertex3f(i, 0, -51);
-        glVertex3f(51, 0, i); glVertex3f(-51, 0, i);
-    }
-    glEnd();
+    landscape.drawCityGround();
 
     //glTranslatef(0, 0, 1.0f);
     glutSolidCube(0.25);
