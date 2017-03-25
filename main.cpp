@@ -37,8 +37,6 @@ void draw(void) {
 	         0,    1,    0);
 
 
-
-
     glutSwapBuffers();
 }
 

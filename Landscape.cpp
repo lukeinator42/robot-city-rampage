@@ -30,7 +30,7 @@ void Landscape::drawCityGround()
    glBegin(GL_QUADS);
 
    // GREY GROUND
-   glNormal3f(  0.0f,  1.0f,  0.0f );
+   //glNormal3f(  0.0f,  1.0f,  0.0f );
    glColor4f (  0.5f,  0.5f , 0.5f, 1.f);
    glVertex3f(   MIN,   0.0f,  MIN );
    glVertex3f(   MIN,   0.0f,  MAX );
