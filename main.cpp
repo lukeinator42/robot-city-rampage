@@ -27,6 +27,9 @@ float LaY = 0;
 float LaZ = 0;
 
 
+
+
+
 void myClick(int button, int state, int x, int y){}
 
 void myCBKey(unsigned char key, int x, int y)
@@ -62,8 +65,7 @@ void draw() {
     /* clear all pixels  */
     glClear (GL_COLOR_BUFFER_BIT);
 
-    /* Set the color to black */
-    glColor3f (1.0, 1.0, 1.0);
+
 
     /* Clear the current matrix */
     glLoadIdentity();
@@ -78,7 +80,11 @@ void draw() {
 
     buildingFactory.draw();
 
-    //glTranslatef(0, 0, 1.0f);
+    /* Set the color to black */
+    glColor3f (0.0, 0.0, 0.0);
+
+    glTranslatef(EyeX, 0, EyeZ+2);
+
     glutSolidCube(0.25);
 
     glutSwapBuffers();
@@ -95,7 +101,7 @@ void reshape(int w, int h)
     glLoadIdentity();
     glFrustum(-1.0, 1.0, /* Left and right boundary */
               -1.0, 1.0, /* bottom and top boundary */
-              1.5, 20.0); /* near and far boundary */
+              1.5, 200.0); /* near and far boundary */
     glMatrixMode(GL_MODELVIEW);
 
 }

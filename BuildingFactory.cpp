@@ -33,8 +33,9 @@ void BuildingFactory::generate() {
     // draw the grass on the ground
     for (GLfloat i = min; i < max; i+=6.f) {
         for (GLfloat j = min; j < max; j += 6.f) {
-            int random = rand() % 4;
-            buildings.push_back(new Building(i+random, j+random, i+random+1, j+random+1, rand()%20+1, 0.8235, 0.7059, 0.5490));
+            int randX = rand() % 4;
+            int randY = rand() % 4;
+            buildings.push_back(new Building(i+randX, j+randY, i+randX+1, j+randY+1, rand()%10+1, 0.8235, 0.7059, 0.5490));
         }
     }
 }
