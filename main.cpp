@@ -31,17 +31,13 @@ void draw(void) {
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    // User defined init
-    glFrustum(-10.0, 110.0, -10.0, 110.0, -10, 100.0);
 
     gluLookAt(EyeX, EyeY, EyeZ,
 	       LaX,  LaY,  LaZ,
 	         0,    1,    0);
-<<<<<<< HEAD
-=======
-    glMatrixMode(GL_MODELVIEW);
->>>>>>> 0f366f3ab29f9822b34ed43fa4fa445013ece821
 
+    
+    glMatrixMode(GL_MODELVIEW);
 
     glutSwapBuffers();
 }
