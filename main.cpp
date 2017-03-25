@@ -14,30 +14,34 @@
 Landscape landscape(0.0f, 102.0f, 102);
 
 /* Look at Variables */
-int EyeX = 0;
-int EyeY = 0;
-int EyeZ = 0;
+double EyeX = 0;
+double EyeY = 0;
+double EyeZ = 0;
 
-int LaX = 1;
-int LaY = 1;
-int LaZ = 1;
+double LaX = 1;
+double LaY = 1;
+double LaZ = 1;
 
 void draw(void) {
-    // Black background
     glClearColor(0.0f,0.0f,0.0f,1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    landscape.drawCityGround();
-
+    // Black background
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    // User defined init
-    glFrustum(-10.0, 110.0, -10.0, 110.0, -10, 100.0);
+
 
     gluLookAt(EyeX, EyeY, EyeZ,
-	       LaX,  LaY,  LaZ,
-	         0,    1,    0);
+              LaX,  LaY,  LaZ,
+              0,    1,    0);
+
     glMatrixMode(GL_MODELVIEW);
+
+
+
+    landscape.drawCityGround();
+
+
 
 
     glutSwapBuffers();
@@ -48,7 +52,7 @@ void reshape(int w, int h)
     glViewport (0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glFrustum(-10.0, 110.0, -10.0, 110.0, -5.0, 200.0);
+    glFrustum(0.0, 110.0, 0.0, 110.0, -5.0, 200.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
@@ -58,24 +62,24 @@ void myClick(int button, int state, int x, int y){}
 void myCBKey(unsigned char key, int x, int y)
 {
    /* Eye at var */
-   if(key == 119){ EyeX += 5; } /* w */
-   if(key == 115){ EyeX -= 5; } /* s */
+   if(key == 119){ EyeX += 0.5; } /* w */
+   if(key == 115){ EyeX -= 0.5; } /* s */
 
-   if(key == 101){ EyeY += 5; } /* e */
-   if(key == 113){ EyeY -= 5; } /* q */
+   if(key == 101){ EyeY += 0.5; } /* e */
+   if(key == 113){ EyeY -= 0.5; } /* q */
 
-   if(key ==  97){ EyeZ += 5; } /* a */
-   if(key == 100){ EyeZ -= 5; } /* d */
+   if(key ==  97){ EyeZ += 0.5; } /* a */
+   if(key == 100){ EyeZ -= 0.5; } /* d */
 
    /* Look at var */
-   if(key == 105){ LaX += 5; } /* i */
-   if(key == 107){ LaX -= 5; } /* k */
+   if(key == 105){ LaX += 0.5; } /* i */
+   if(key == 107){ LaX -= 0.5; } /* k */
 
-   if(key == 117){ LaY += 5; } /* u */
-   if(key == 111){ LaY -= 5; } /* o */
+   if(key == 117){ LaY += 0.5; } /* u */
+   if(key == 111){ LaY -= 0.5; } /* o */
 
-   if(key == 106){ LaZ += 5; } /* j */
-   if(key == 108){ LaZ -= 5; } /* l */
+   if(key == 106){ LaZ += 0.5; } /* j */
+   if(key == 108){ LaZ -= 0.5; } /* l */
 }
 
 
