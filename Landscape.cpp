@@ -38,15 +38,15 @@ void Landscape::drawCityGround()
    
 
    // draw the grass on the ground
-   for (GLfloat i = MIN+1; i < MAX; i+=6.f)
-      for (GLfloat j = MIN+1; j < MAX; j+=6.f)
+   for (GLfloat i = MIN; i < MAX; i+=6.f)
+      for (GLfloat j = MIN; j < MAX; j+=6.f)
       {
 	 glColor3f (0.2f, 0.39f, 0.f);
 	 glBegin (GL_QUADS);
 	 glVertex3f (i    , 0.f, j    );
-	 glVertex3f (i    , 0.f, j+3.f);
-	 glVertex3f (i+3.f, 0.f, j+3.f);
-	 glVertex3f (i+3.f, 0.f, j    );
+	 glVertex3f (i    , 0.f, j+4.f);
+	 glVertex3f (i+4.f, 0.f, j+4.f);
+	 glVertex3f (i+4.f, 0.f, j    );
 	 glEnd();
       }
 

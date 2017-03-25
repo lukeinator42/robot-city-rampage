@@ -10,8 +10,11 @@
 
 #include <string.h>
 #include "Landscape.h"
+#include "Building.h"
 
-Landscape landscape(-51.0f, 51.0f, 102);
+Landscape landscape(-59.0f, 59.0f, 118);
+
+Building b1(0, 0, 1, 1, 10, 0.8235, 0.7059, 0.5490);
 
 /* Look at Variables */
 float EyeX = 0;
@@ -71,6 +74,7 @@ void draw() {
 
 
     landscape.drawCityGround();
+    b1.draw();
 
     //glTranslatef(0, 0, 1.0f);
     glutSolidCube(0.25);
