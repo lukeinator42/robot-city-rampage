@@ -11,10 +11,11 @@
 #include <string.h>
 #include "Landscape.h"
 #include "Building.h"
+#include "BuildingFactory.h"
 
 Landscape landscape(-59.0f, 59.0f, 118);
 
-Building b1(0, 0, 1, 1, 10, 0.8235, 0.7059, 0.5490);
+BuildingFactory buildingFactory(-59.0f, 59.0f, 118);
 
 /* Look at Variables */
 float EyeX = 0;
@@ -74,7 +75,8 @@ void draw() {
 
 
     landscape.drawCityGround();
-    b1.draw();
+
+    buildingFactory.draw();
 
     //glTranslatef(0, 0, 1.0f);
     glutSolidCube(0.25);
@@ -99,6 +101,9 @@ void reshape(int w, int h)
 }
 
 int main(int argc, char** argv) {
+
+    buildingFactory.generate();
+
     glutInit(&argc, argv);
 
     /*Setting up  The Display
