@@ -29,14 +29,15 @@ void draw(void) {
 
     landscape.drawCityGround();
 
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
     // User defined init
     glFrustum(-10.0, 110.0, -10.0, 110.0, -10, 100.0);
 
     gluLookAt(EyeX, EyeY, EyeZ,
 	       LaX,  LaY,  LaZ,
 	         0,    1,    0);
-
-
+    glMatrixMode(GL_MODELVIEW);
 
 
     glutSwapBuffers();
@@ -59,22 +60,22 @@ void myCBKey(unsigned char key, int x, int y)
    /* Eye at var */
    if(key == 119){ EyeX += 5; } /* w */
    if(key == 115){ EyeX -= 5; } /* s */
-   
+
    if(key == 101){ EyeY += 5; } /* e */
    if(key == 113){ EyeY -= 5; } /* q */
-   
+
    if(key ==  97){ EyeZ += 5; } /* a */
    if(key == 100){ EyeZ -= 5; } /* d */
 
    /* Look at var */
    if(key == 105){ LaX += 5; } /* i */
    if(key == 107){ LaX -= 5; } /* k */
-   
+
    if(key == 117){ LaY += 5; } /* u */
    if(key == 111){ LaY -= 5; } /* o */
-   
+
    if(key == 106){ LaZ += 5; } /* j */
-   if(key == 108){ LaZ -= 5; } /* l */   
+   if(key == 108){ LaZ -= 5; } /* l */
 }
 
 
@@ -100,7 +101,7 @@ int main(int argc, char **argv) {
 
     //Call to the drawing function
     
-    glutDisplayFunc(draw);
+    glutDisplayFunc(& draw);
     glutIdleFunc(& draw);
     glutMouseFunc(&myClick);
     glutKeyboardFunc(&myCBKey);

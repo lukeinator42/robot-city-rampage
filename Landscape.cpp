@@ -40,11 +40,6 @@ void Landscape::drawCityGround()
    glEnd();
    
 
-   for(int i=0; i< this->GRID_SIZE; i++) {
-        for (int j = 0; j < this->GRID_SIZE; j++) {
-
-        }
-    }
 }
 
 void Landscape::draw() {
