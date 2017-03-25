@@ -30,13 +30,14 @@ void draw(void) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-
     gluLookAt(EyeX, EyeY, EyeZ,
-              LaX,  LaY,  LaZ,
-              0,    1,    0);
+	       LaX,  LaY,  LaZ,
+	         0,    1,    0);
 
     glMatrixMode(GL_MODELVIEW);
 
+    
+    glMatrixMode(GL_MODELVIEW);
 
 
     landscape.drawCityGround();
