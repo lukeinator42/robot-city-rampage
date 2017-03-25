@@ -27,29 +27,34 @@ Landscape::Landscape(const float min, const float max, const int grid_size)
 void Landscape::drawCityGround()
 {
 
-   glBegin(GL_QUADS);
-
-   // GREY GROUND
-   glNormal3f( 0.0f,  1.0f,  0.0f );
-   glColor4f ( 0.5f,  0.5f , 0.5f, 1.f);
-   glVertex3f(  MIN,   0.0f,  MIN );
-   glVertex3f(  MIN,   0.0f,  MAX );
-   glVertex3f(  MAX,   0.0f,  MAX );
-   glVertex3f(  MAX,   0.0f,  MIN );
-
-
-   // GREEN SQUARES
-   glColor4f( 0.2f, 0.39f, 0.f, 1.f);
    for(int i = 1; i < GRID_SIZE; i+=4)     // x loop
       for(int j = 1; j < GRID_SIZE; j+=4)  // z loop
       {
-	 glVertex3i(   i, 0,   j);
-	 glVertex3i( i+3, 0,   j);
-	 glVertex3i( i+3, 0, j+3);
-	 glVertex3i(   i, 0, j+3);
+
+         glBegin(GL_QUADS);
+         glNormal3f( 0.0f,  1.0f,  0.0f );
+         glColor4f( 0.2f, 0.39f, 0.f, 1.f);
+         glVertex3f(   i, 0.5,   j);
+         glVertex3f( i+3, 0.5,   j);
+         glVertex3f( i+3, 0.5, j+3);
+         glVertex3f(   i, 0.5, j+3);
+         glEnd();
       }
 
-   glEnd();
+//   glBegin(GL_QUADS);
+//
+//   // GREY GROUND
+//   glNormal3f( 0.0f,  1.0f,  0.0f );
+//   glColor4f ( 0.5f,  0.5f , 0.5f, 1.f);
+//   glVertex3f(  MIN,   0.0f,  MIN );
+//   glVertex3f(  MIN,   0.0f,  MAX );
+//   glVertex3f(  MAX,   0.0f,  MAX );
+//   glVertex3f(  MAX,   0.0f,  MIN );
+//
+//   glEnd();
+
+
+
    
 
 }

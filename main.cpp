@@ -11,85 +11,96 @@
 #include <string.h>
 #include "Landscape.h"
 
-Landscape landscape(-102.0f, 102.0f, 102);
+Landscape landscape(-102.0f, 102.0f, 205);
 
 /* Look at Variables */
 float EyeX = 0;
-float EyeY = 100;
-float EyeZ = 0;
+float EyeY = 1;
+float EyeZ = -2;
 
-float LaX = 50;
+float LaX = 0;
 float LaY = 0;
-float LaZ = -50;
+float LaZ = 0;
 
-void draw(void) {
-    glClearColor(0.0f,0.0f,0.0f,1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    // Black background
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-
-    gluLookAt(EyeX, EyeY, EyeZ,
-	       LaX,  LaY,  LaZ,
-	         0,    1,    0);
-
-    glMatrixMode(GL_MODELVIEW);
-
-    
-    glMatrixMode(GL_MODELVIEW);
-
-
-    landscape.drawCityGround();
-
-    glutWireCube(10.0f);
-
-
-    glutSwapBuffers();
-}
-
-void reshape(int w, int h)
-{
-    glViewport (0, 0, (GLsizei) w, (GLsizei) h);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-
-    glFrustum(-110.0, 110.0, 0.0, 110.0, 5.0, 200.0);
-
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-}
 
 void myClick(int button, int state, int x, int y){}
 
 void myCBKey(unsigned char key, int x, int y)
 {
    /* Eye at var */
-   if(key == 119){ EyeX += 0.5; LaX += 0.5; } /* w */
-   if(key == 115){ EyeX -= 0.5; LaX -= 0.5; } /* s */
+   if(key == 119){ EyeZ += 0.5; LaZ += 0.5; } /* w */
+   if(key == 115){ EyeZ -= 0.5; LaZ -= 0.5; } /* s */
 
-   if(key == 101){ EyeY += 0.5; LaY += 0.5; } /* e */
-   if(key == 113){ EyeY -= 0.5; LaY -= 0.5; } /* q */
+   if(key == 101){ EyeY += 0.05; LaY += 0.05; } /* e */
+   if(key == 113){ EyeY -= 0.05; LaY -= 0.05; } /* q */
 
-   if(key ==  97){ EyeZ += 0.5; LaZ += 0.5; } /* a */
-   if(key == 100){ EyeZ -= 0.5; LaZ -= 0.5; } /* d */
+   if(key ==  97){ EyeX += 0.5; LaX += 0.5; } /* a */
+   if(key == 100){ EyeX -= 0.5; LaX -= 0.5; } /* d */
 
    /* Look at var */
-   if(key == 105){ LaX += 0.5; } /* i */
-   if(key == 107){ LaX -= 0.5; } /* k */
+   if(key == 105){ LaZ += 0.5; } /* i */
+   if(key == 107){ LaZ -= 0.5; } /* k */
 
    if(key == 117){ LaY += 0.5; } /* u */
    if(key == 111){ LaY -= 0.5; } /* o */
 
-   if(key == 106){ LaZ += 0.5; } /* j */
-   if(key == 108){ LaZ -= 0.5; } /* l */
+   if(key == 106){ LaX += 0.5; } /* j */
+   if(key == 108){ LaX -= 0.5; } /* l */
 }
 
 
-//Main program
 
-int main(int argc, char **argv) {
+void draw() {
 
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glMatrixMode(GL_MODELVIEW);
+    /* clear all pixels  */
+    glClear (GL_COLOR_BUFFER_BIT);
+
+    /* Set the color to black */
+    glColor3f (1.0, 1.0, 1.0);
+
+    /* Clear the current matrix */
+    glLoadIdentity();
+
+    /* Viewing transformation */
+    gluLookAt(EyeX, EyeY, EyeZ,   /* Eye */
+              LaX, LaY, LaZ,   /* Look at */
+              0.0, 1.0, 0.0);  /* Up vector */
+
+
+    glColor3f(1.0, 1.0, 1.0);
+    glBegin(GL_LINES);
+    for (GLfloat i = -51; i <= 51; i += 1.0) {
+        glVertex3f(i, 0, 51); glVertex3f(i, 0, -51);
+        glVertex3f(51, 0, i); glVertex3f(-51, 0, i);
+    }
+    glEnd();
+
+    //glTranslatef(0, 0, 1.0f);
+    glutSolidCube(0.25);
+
+    glutSwapBuffers();
+}
+
+
+void reshape(int w, int h)
+{
+    /* Set the view port */
+    glViewport(0, 0, (GLsizei) w, (GLsizei) h);
+
+    /* Projection transformation */
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glFrustum(-1.0, 1.0, /* Left and right boundary */
+              -1.0, 1.0, /* bottom and top boundary */
+              1.5, 20.0); /* near and far boundary */
+    glMatrixMode(GL_MODELVIEW);
+
+}
+
+int main(int argc, char** argv) {
     glutInit(&argc, argv);
 
     /*Setting up  The Display
@@ -107,15 +118,14 @@ int main(int argc, char **argv) {
     glutCreateWindow("Robot City Rampage!!");
 
     //Call to the drawing function
-    
+
     glutDisplayFunc(& draw);
     glutIdleFunc(& draw);
     glutMouseFunc(&myClick);
     glutKeyboardFunc(&myCBKey);
     glutReshapeFunc(& reshape);
 
-    
+
     // Loop require by OpenGL
     glutMainLoop();
-    return 0;
 }
