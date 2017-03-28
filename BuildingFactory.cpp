@@ -30,7 +30,7 @@ void BuildingFactory::draw() {
 }
 
 void BuildingFactory::generate() {
-    // draw the grass on the ground
+
     for (GLfloat i = min; i < max; i+=6.f) {
         for (GLfloat j = min; j < max; j += 6.f) {
             int randX = rand() % 4;

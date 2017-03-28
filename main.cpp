@@ -14,6 +14,8 @@
 #include "Building.h"
 #include "BuildingFactory.h"
 
+
+
 Landscape landscape(-59.0f, 59.0f, 118);
 
 BuildingFactory buildingFactory(-59.0f, 59.0f, 118);
@@ -34,7 +36,7 @@ float botZ = 0.f;
 int rotNorm = 0;
 float rot = 0.f;
 float pos[2][4] = { {0.f, -1.f,  0.f, 1.f},
-		    {1.f,  0.f, -1.f, 0.f} };
+		          {1.f,  0.f, -1.f, 0.f} };
 
 /* PAUSE */
 bool PAUSEBOOL = true;
@@ -54,7 +56,7 @@ void turn(bool direction)
    // if the bot is in the center
    // of a street it can turn
    if((int)botX % 6 == 0 && (int)botZ % 6 == 0)
-   { rot += (dir*90); rotNorm = (rotNorm + (int)dir) % 4; }
+   { rot += (dir*90); rotNorm = (rotNorm + (int)dir + 4) % 4; }
 }
 
 //
@@ -190,7 +192,6 @@ void draw()
     glLoadIdentity ();
     glPopMatrix ();
     /* end of temp-bot */
-
     glutSwapBuffers();
 }
 

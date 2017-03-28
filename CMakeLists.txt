@@ -17,19 +17,26 @@ endif(NOT GLUT_FOUND)
 #########################################################
 find_package(OpenGL REQUIRED)
 include_directories(${OpenGL_INCLUDE_DIRS})
+
 link_directories(${OpenGL_LIBRARY_DIRS})
 add_definitions(${OpenGL_DEFINITIONS})
 if(NOT OPENGL_FOUND)
     message(ERROR " OPENGL not found!")
 endif(NOT OPENGL_FOUND)
+
+
+
+
 #########################################################
 # Include Files
 #########################################################
 add_executable(test main.cpp Landscape.cpp Landscape.h Robot.cpp Robot.h Building.cpp Building.h BuildingFactory.cpp BuildingFactory.h)
+
+target_include_directories(test PRIVATE ${GlmIncludeDir})
 
 ########################################################
 # Linking & stuff
 #########################################################
 
   # create the program "test"
-  target_link_libraries(test ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )
+  target_link_libraries(test ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
