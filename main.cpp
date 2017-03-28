@@ -38,6 +38,13 @@ float rot = 0.f;
 float pos[2][4] = { {0.f, -1.f,  0.f, 1.f},
 		          {1.f,  0.f, -1.f, 0.f} };
 
+//                           EyeX   EyeY  EyeZ
+float viewChange[5][3] = { {  0.f,  EyeY, -2.f },   // F4
+			   { -2.f,  EyeY, -2.f },   // F5
+			   {  2.f,  EyeY, -2.f },   // F6
+			   {  2.f,  EyeY,  2.f },   // F7
+			   { -2.f,  EyeY,  2.f } }; // F8
+
 /* PAUSE */
 bool PAUSEBOOL = true;
 
@@ -70,6 +77,16 @@ void origin()
 }
 
 //
+// change the current view
+//
+void view(int changeView)
+{
+   EyeX = botX + viewChange[changeView][0];
+   EyeY = viewChange[changeView][1];
+   EyeZ = botZ + viewChange[changeView][2];
+}
+
+//
 // Adds functionality for the following keys
 // p - pause the game
 // a - turn robot right
@@ -98,8 +115,6 @@ void myCBKey(unsigned char key, int x, int y)
       else if(key == 113){ turn(true);  } /* q - turn left        */
       else if(key ==  97){ turn(false); } /* a - turn right       */
       else if(key == 114){ origin();    } /* r - return to origin */
-      else
-	 std::cout << "No function for key: " << key << "\n";
    }
 }
 
@@ -124,11 +139,11 @@ void specialCBKey(int key, int x, int y)
       else if(key == GLUT_KEY_F3){ /*TURN HEAD LEFT*/; }
       
       /* Look at Changing Commands */
-      else if(key == GLUT_KEY_F4){ /*CHANGE BACK TO DEFAULT */; }
-      else if(key == GLUT_KEY_F5){/*view 1*/;}
-      else if(key == GLUT_KEY_F6){/*view 2*/;}
-      else if(key == GLUT_KEY_F7){/*view 3*/;}
-      else if(key == GLUT_KEY_F8){/*view 4*/;}
+      else if(key == GLUT_KEY_F4){ view(0); }
+      else if(key == GLUT_KEY_F5){ view(1); }
+      else if(key == GLUT_KEY_F6){ view(2); }
+      else if(key == GLUT_KEY_F7){ view(3); }
+      else if(key == GLUT_KEY_F8){ view(4); }
    }
 }
 
