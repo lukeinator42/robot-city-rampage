@@ -14,7 +14,8 @@ class Robot {
    void head(float);
    void neck();
    void body();
-   void draw(float);
+   //first param is for the antenna rotation, second is for head rotation.
+   void draw(float,float);
 };
 
 

@@ -36,11 +36,12 @@ float botZ = 0.f;
 
 int rotNorm = 0;
 float rot = 0.f;
-float pos[2][4] = { {0.f, -1.f,  0.f, 1.f},
-		          {1.f,  0.f, -1.f, 0.f} };
-float testfloat = 0;
+float pos[2][4] = { {0.f, 1.f,  0.f, -1.f},
+		    {1.f,  0.f, -1.f, 0.f} };
+float antrot = 0;
+float headrot = 0;
 //                           EyeX   EyeY  EyeZ
-float viewChange[5][3] = { {  0.f,  EyeY, -2.f },   // F4
+float viewChange[5][3] = { {  0.f,  EyeY, -5.f },   // F4
 			   { -2.f,  EyeY, -2.f },   // F5
 			   {  2.f,  EyeY, -2.f },   // F6
 			   {  2.f,  EyeY,  2.f },   // F7
@@ -73,8 +74,8 @@ void turn(bool direction)
 void origin()
 {
    EyeX =  0.f; LaX = 0.f; botX = 0.f; rot = 0.f;
-   EyeY = 1.5f; LaY = 0.f; botY = 0.f; rotNorm = 0;
-   EyeZ = -2.f; LaZ = 0.f; botZ = 0.f; 
+   EyeY = 5.5f; LaY = 0.f; botY = 0.f; rotNorm = 0;
+   EyeZ = -5.f; LaZ = 0.f; botZ = 0.f; 
 }
 
 //
@@ -103,7 +104,7 @@ void myCBKey(unsigned char key, int x, int y)
    {
       if(key == 122) /* z - push forward */
       {
-	 testfloat+=30;
+	 antrot += 30;
 	 botX += pos[0][rotNorm];
 	 botZ += pos[1][rotNorm];
 	 
@@ -136,16 +137,16 @@ void specialCBKey(int key, int x, int y)
    if(PAUSEBOOL)
    {
       /* Head Turning Commands */
-      if(key == GLUT_KEY_F1){ /*turn head forward*/; }
-      else if(key == GLUT_KEY_F2){ /*TURN HEAD RIGHT*/; }
-      else if(key == GLUT_KEY_F3){ /*TURN HEAD LEFT*/; }
+      if(key == GLUT_KEY_F1){ headrot = 0; }
+      else if(key == GLUT_KEY_F2){ headrot = -90; }
+      else if(key == GLUT_KEY_F3){ headrot = 90; }
       
       /* Look at Changing Commands */
       else if(key == GLUT_KEY_F4){ view(0); }
-      else if(key == GLUT_KEY_F5){ view(1); }
-      else if(key == GLUT_KEY_F6){ view(2); }
-      else if(key == GLUT_KEY_F7){ view(3); }
-      else if(key == GLUT_KEY_F8){ view(4); }
+      else if(key == GLUT_KEY_F5){ view(2); }
+      else if(key == GLUT_KEY_F6){ view(1); }
+      else if(key == GLUT_KEY_F7){ view(4); }
+      else if(key == GLUT_KEY_F8){ view(3); }
    }
 }
 
@@ -159,7 +160,7 @@ void specialUpCBKey(int key, int x, int y)
    {
       if(key == GLUT_KEY_F2 || key == GLUT_KEY_F3)
       {
-	 /* turn head forward */;
+	 headrot = 0;
       }
    }
 }
@@ -205,9 +206,11 @@ void draw()
     glPushMatrix ();
     //glColor3f (0.0, 0.0, 0.0);
     glTranslatef (botX, botY, botZ);
+    
     glRotatef (rot, 0.f, 1.f, 0.f);
+    glTranslatef(-0.5f,0,-0.5);
     glScalef(0.1,0.1,0.1);
-    R.draw(testfloat);
+    R.draw(antrot,headrot);
     glLoadIdentity ();
     glPopMatrix ();
     //testfloat +=30;

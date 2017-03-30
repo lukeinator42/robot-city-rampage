@@ -228,7 +228,8 @@ void Robot::neck(){
    glLoadIdentity();
    glPopMatrix();
 }
-void Robot::draw(float rot){
+
+void Robot::draw(float rot, float rota){
    glPushMatrix();
    body();
    glPopMatrix();
@@ -239,7 +240,7 @@ void Robot::draw(float rot){
    //head
    glPushMatrix();
    glTranslatef(2,25,3);
-   glRotatef(0, 0,1,0);
+   glRotatef(rota, 0,1,0);
    glTranslatef(-2,-25,-3);
    head(rot);
    glPopMatrix();
