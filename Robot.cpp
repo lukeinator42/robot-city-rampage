@@ -112,7 +112,7 @@ void Robot::head(float ROTa){
    //left eye
    glPushMatrix();
    glColor3f(1,0,0);
-   glTranslatef(3,0,0);
+   glTranslatef(3,0,-0.01);
    glBegin(GL_POLYGON);
    GLUquadricObj *obj = gluNewQuadric();
    gluCylinder(obj, 1.0, 1, 0.05, 100, 100);
@@ -123,7 +123,7 @@ void Robot::head(float ROTa){
    //right eye
    glPushMatrix();
    glColor3f(1,0,0);
-   glTranslatef(0,0,0);
+   glTranslatef(0,0,-0.01);
    glBegin(GL_POLYGON);
    GLUquadricObj *obj1 = gluNewQuadric();
    gluCylinder(obj1, 1.0, 1, 0.05, 100, 100);
@@ -184,14 +184,14 @@ void Robot::body(){
    glPushMatrix();
    glColor3f(0,0.5,1);
    glBegin(GL_POLYGON);
-   glVertex3f(2,10,0);
-   glVertex3f(5,18,0);
-   glVertex3f(8,10,0);
+   glVertex3f(2,10,-0.01);
+   glVertex3f(5,18,-0.01);
+   glVertex3f(8,10,-0.01);
    glEnd();
    glBegin(GL_POLYGON);
-   glVertex3f(2,2,0);
-   glVertex3f(5,10,0);
-   glVertex3f(8,2,0);
+   glVertex3f(2,2,-0.01);
+   glVertex3f(5,10,-0.01);
+   glVertex3f(8,2,-0.01);
    glEnd();
    glLoadIdentity();
    glPopMatrix();
@@ -200,10 +200,10 @@ void Robot::body(){
    glPushMatrix();
    glColor3f(0,0.5,1);
    glBegin(GL_POLYGON);
-   glVertex3f(2,2,10);
-   glVertex3f(8,2,10);
-   glVertex3f(8,18,10);
-   glVertex3f(2,18,10);
+   glVertex3f(2,2,10.01);
+   glVertex3f(8,2,10.01);
+   glVertex3f(8,18,10.01);
+   glVertex3f(2,18,10.01);
    glEnd();
    glLoadIdentity();
    glPopMatrix();
