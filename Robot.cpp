@@ -11,26 +11,11 @@
 #include "Robot.h"
 
 Robot::Robot(){
-   glPushMatrix();
-   body();
-   glPopMatrix();
-   
-   //neck
-   neck();
-   
-   //head
-   glPushMatrix();
-   glTranslatef(2,25,3);
-   glRotatef(0, 0,1,0);
-   glTranslatef(-2,-25,-3);
-   head();
-   glPopMatrix();
-   glLoadIdentity();
-   glPopMatrix();
+  
 }
 
 Robot::Robot(float ROT){
-   glPushMatrix();
+   /*glPushMatrix();
    body();
    glPopMatrix();
    
@@ -45,9 +30,9 @@ Robot::Robot(float ROT){
    head();
    glPopMatrix();
    glLoadIdentity();
-   glPopMatrix();
+   glPopMatrix();*/
 }
-void Robot::head(){
+void Robot::head(float ROTa){
    //top
    glPushMatrix();
    glColor3f(1,0,0);
@@ -64,6 +49,9 @@ void Robot::head(){
    glPushMatrix();
    glColor3f(0,0,1);
    glTranslatef(2,4,4);
+   glRotatef(ROTa,0,1,0);
+   glTranslatef(1,0,0);
+   //glRotatef(ROTa,0,1,0);
    glRotatef(90,1,0,0);
    glBegin(GL_POLYGON);
    GLUquadricObj *obj2 = gluNewQuadric();
@@ -138,7 +126,7 @@ void Robot::head(){
    glPopMatrix();
 }
 void Robot::body(){
-    glPushMatrix();
+   glPushMatrix();
    glColor3f(0.5,0,1);
    glBegin(GL_POLYGON);
    glVertex3f(0,0,10);
@@ -240,7 +228,7 @@ void Robot::neck(){
    glLoadIdentity();
    glPopMatrix();
 }
-void Robot::draw(){
+void Robot::draw(float rot){
    glPushMatrix();
    body();
    glPopMatrix();
@@ -253,7 +241,7 @@ void Robot::draw(){
    glTranslatef(2,25,3);
    glRotatef(0, 0,1,0);
    glTranslatef(-2,-25,-3);
-   head();
+   head(rot);
    glPopMatrix();
    glLoadIdentity();
    glPopMatrix();

@@ -23,7 +23,7 @@ BuildingFactory buildingFactory(-59.0f, 59.0f, 118);
 
 /* Look at Variables */
 float EyeX = 0.f;
-float EyeY = 10.5f;
+float EyeY = 5.5f;
 float EyeZ = -5.0f;
 
 float LaX = 0.f;
@@ -38,7 +38,7 @@ int rotNorm = 0;
 float rot = 0.f;
 float pos[2][4] = { {0.f, -1.f,  0.f, 1.f},
 		          {1.f,  0.f, -1.f, 0.f} };
-
+float testfloat = 0;
 //                           EyeX   EyeY  EyeZ
 float viewChange[5][3] = { {  0.f,  EyeY, -2.f },   // F4
 			   { -2.f,  EyeY, -2.f },   // F5
@@ -103,6 +103,7 @@ void myCBKey(unsigned char key, int x, int y)
    {
       if(key == 122) /* z - push forward */
       {
+	 testfloat+=30;
 	 botX += pos[0][rotNorm];
 	 botZ += pos[1][rotNorm];
 	 
@@ -206,9 +207,10 @@ void draw()
     glTranslatef (botX, botY, botZ);
     glRotatef (rot, 0.f, 1.f, 0.f);
     glScalef(0.1,0.1,0.1);
-    R.draw();
+    R.draw(testfloat);
     glLoadIdentity ();
     glPopMatrix ();
+    //testfloat +=30;
     /* end of temp-bot */
     glutSwapBuffers();
 }

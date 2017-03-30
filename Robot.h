@@ -11,10 +11,10 @@ class Robot {
   public:
    Robot();
    Robot(float);
-   void head();
+   void head(float);
    void neck();
    void body();
-   void draw();
+   void draw(float);
 };
 
 
