@@ -55,7 +55,7 @@ void Robot::head(float ROTa){
    glPushMatrix();
    glColor3f(0,0,1);
    glTranslatef(2,4,4);
-   glRotatef(ROTa,0,1,0);
+   glRotatef(-ROTa,0,1,0);
    glTranslatef(1,0,0);
    //glRotatef(ROTa,0,1,0);
    glRotatef(90,1,0,0);
@@ -242,7 +242,6 @@ void Robot::draw(float rot, float rota){
    
    //neck
    neck();
-   
    //head
    glPushMatrix();
    glTranslatef(2,25,3);
