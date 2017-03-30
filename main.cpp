@@ -13,8 +13,9 @@
 #include "Landscape.h"
 #include "Building.h"
 #include "BuildingFactory.h"
+#include "Robot.h"
 
-
+Robot R;
 
 Landscape landscape(-59.0f, 59.0f, 118);
 
@@ -22,8 +23,8 @@ BuildingFactory buildingFactory(-59.0f, 59.0f, 118);
 
 /* Look at Variables */
 float EyeX = 0.f;
-float EyeY = 1.5f;
-float EyeZ = -2.f;
+float EyeY = 10.5f;
+float EyeZ = -5.0f;
 
 float LaX = 0.f;
 float LaY = 0.f;
@@ -191,19 +192,21 @@ void draw()
     gluLookAt(EyeX, EyeY, EyeZ, /*    Eye    */
               LaX, LaY, LaZ,    /*  Look at  */
               0.0, 1.0, 0.0);   /* Up vector */
-
+  
     /* Draw the landscaps */
     landscape.drawCityGround();
-
+    
+  
     /* Draw the buildings */
     buildingFactory.draw();
-    
+
     /* temp robot */
     glPushMatrix ();
-    glColor3f (0.0, 0.0, 0.0);
+    //glColor3f (0.0, 0.0, 0.0);
     glTranslatef (botX, botY, botZ);
     glRotatef (rot, 0.f, 1.f, 0.f);
-    glutSolidCube (0.25);
+    glScalef(0.1,0.1,0.1);
+    R.draw();
     glLoadIdentity ();
     glPopMatrix ();
     /* end of temp-bot */
@@ -254,7 +257,8 @@ int main(int argc, char** argv) {
     glutSpecialFunc(& specialCBKey);
     glutSpecialUpFunc(& specialUpCBKey);
     glutReshapeFunc(& reshape);
-
+    glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
     // Loop require by OpenGL
     glutMainLoop();
 }
