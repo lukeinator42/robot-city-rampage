@@ -43,10 +43,10 @@ void Landscape::drawCityGround()
       {
 	 glColor3f (0.2f, 0.39f, 0.f);
 	 glBegin (GL_QUADS);
-	 glVertex3f (i    , 0.f, j    );
-	 glVertex3f (i    , 0.f, j+4.f);
-	 glVertex3f (i+4.f, 0.f, j+4.f);
-	 glVertex3f (i+4.f, 0.f, j    );
+	 glVertex3f (i    , 0.01f, j    );
+	 glVertex3f (i    , 0.01f, j+4.f);
+	 glVertex3f (i+4.f, 0.01f, j+4.f);
+	 glVertex3f (i+4.f, 0.01f, j    );
 	 glEnd();
       }
 
@@ -55,8 +55,8 @@ void Landscape::drawCityGround()
    glColor3f(1.0, 1.0, 1.0);
    glBegin(GL_LINES);
    for (GLfloat i = MIN; i <= MAX; i += 1.0) {
-      glVertex3f(i, 0, MAX); glVertex3f(i, 0, MIN);
-      glVertex3f(MAX, 0, i); glVertex3f(MIN, 0, i);
+      glVertex3f(i, 0.02, MAX); glVertex3f(i, 0.02, MIN);
+      glVertex3f(MAX, 0.02, i); glVertex3f(MIN, 0.02, i);
    }
    glEnd();
    
