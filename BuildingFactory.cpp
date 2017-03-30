@@ -31,11 +31,27 @@ void BuildingFactory::draw() {
 
 void BuildingFactory::generate() {
 
-    for (GLfloat i = min; i < max; i+=6.f) {
-        for (GLfloat j = min; j < max; j += 6.f) {
-            int randX = rand() % 4;
-            int randY = rand() % 4;
-            buildings.push_back(new Building(i+randX, j+randY, i+randX+1, j+randY+1, rand()%10+1, 0.8235, 0.7059, 0.5490));
+    for (GLfloat i = min; i < max; i+=1.f) {
+        for (GLfloat j = min; j < max; j += 1.f) {
+            if(     ((int) i+6)%6 == 5 ||
+                    ((int) i+6)%6 == 0 ||
+                    ((int) i+6)%6 == 1 ||
+                    ((int) j+6)%6 == 5 ||
+                    ((int) j+6)%6 == 0 ||
+                    ((int) j+6)%6 == 1
+                )
+                continue;
+
+            int draw = rand();
+
+            if(draw % 3 == 1 || draw %3 == 2)
+                continue;
+
+            float rGen = (rand()%10000)/10000.0f;
+            float gGen = (rand()%10000)/10000.0f;
+            float bGen = (rand()%10000)/10000.0f;
+
+            buildings.push_back(new Building(i, j, i-1, j-1, rand()%10+1, rGen, gGen, bGen));
         }
     }
 }

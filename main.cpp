@@ -183,7 +183,7 @@ void draw()
 {
 
    /* Clear buffer and set backdrop color */
-   glClear(GL_COLOR_BUFFER_BIT);
+   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glClearColor(0.1, 0.39, 0.88, 1.0);
    glMatrixMode(GL_MODELVIEW);
 
@@ -243,7 +243,7 @@ int main(int argc, char** argv) {
     /*Setting up  The Display
     /    -RGB color model + Alpha Channel = GLUT_RGBA
     */
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 
     //Configure Window Postion
     glutInitWindowPosition(50, 25);
