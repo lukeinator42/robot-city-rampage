@@ -9,19 +9,19 @@
 
 class BuildingFactory {
 public:
-    BuildingFactory(float min, float max, float grid_size);
+    BuildingFactory(int min, int max, int grid_size);
 
     void draw();
 
     void generate();
 
 private:
-    float min, max, grid_size;
+    int min, max, grid_size;
     std::vector<Building*> buildings;
 public:
     virtual ~BuildingFactory();
 
-    const std::vector<Building*> &getBuildings() const;
+    std::vector<Building*> &getBuildings() ;
 };
 
 

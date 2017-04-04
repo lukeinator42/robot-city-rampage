@@ -4,19 +4,37 @@
 
 #ifndef HW_OPENGL_BUILDING_H
 #define HW_OPENGL_BUILDING_H
+#include <cstdlib>
+#include <ctime>
 
 
 class Building {
 public:
-    Building(float x1, float y1, float x2, float y2, float height, float r, float g, float b )
-            : x1(x1), y1(y1), x2(x2), y2(y2), height(height), r(r), g(g), b(b)  {
+    Building(float x, float y, float height, float r, float g, float b, int type)
+            : x(x), y(y), height(height), r(r), g(g), b(b), type(type), display(true)  {
+
 
     }
 
     void draw();
 
 private:
-    float x1, y1, x2, y2, height, r, g, b;
+    float x, y,  height, r, g, b;
+public:
+    float getR() const;
+
+    float getG() const;
+
+    float getB() const;
+
+private:
+    int type;
+    bool display;
+public:
+    bool isDisplay() const;
+
+    void setDisplay(bool display);
+
 };
 
 

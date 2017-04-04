@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <algorithm>
 #include "Landscape.h"
 #include "Building.h"
 #include "BuildingFactory.h"
@@ -21,7 +22,12 @@ Robot R;
 
 Landscape landscape(-59.0f, 59.0f, 118);
 
-BuildingFactory buildingFactory(-59.0f, 59.0f, 118);
+BuildingFactory buildingFactory(-59, 59, 118);
+
+int width;
+int height;
+
+const float EPS = 0.01;
 
 /* Look at Variables */
 float EyeX = 0.f;
@@ -172,10 +178,48 @@ void specialUpCBKey(int key, int x, int y)
 // 
 void myClick(int button, int state, int x, int y)
 {
-   if(PAUSEBOOL)
-   {
-      
-   }
+    if (!(button == GLUT_LEFT_BUTTON  && state == GLUT_DOWN))
+        return;
+
+
+    float r, g, b;
+
+
+    GLint pixel_color[3];
+
+
+    glReadPixels(x, width-y, 1, 1, GL_RGB, GL_INT, &pixel_color);
+    printf("PIXEL: %f - %f - %f\n", pixel_color[0]/(INT_MAX*1.0), pixel_color[1]/(INT_MAX*1.0), pixel_color[2]/(INT_MAX*1.0));
+
+     r = pixel_color[0]/(INT_MAX*1.0f);
+     g = pixel_color[1]/(INT_MAX*1.0f);
+     b = pixel_color[2]/(INT_MAX*1.0f);
+    //std::cout << "r: " << r << " g: " << g << " b: " << b << std::endl;
+
+    for(Building* building : buildingFactory.getBuildings()) {
+        float deltaR = r - building->getR();
+        float deltaG = g - building->getG();
+        float deltaB = b - building->getB();
+
+        if(deltaR < 0.0)
+            deltaR *= -1.0f;
+
+        if(deltaG < 0.0)
+            deltaG *= -1.0f;
+
+        if(deltaB < 0.0)
+            deltaB *= -1.0f;
+
+        if( deltaR < EPS && deltaG < EPS && deltaB < EPS) {
+            building->setDisplay(false);
+            //break;
+        }
+    }
+
+
+
+
+
 }
 
 
@@ -253,6 +297,8 @@ void draw()
 
 void reshape(int w, int h)
 {
+    width = w;
+    height = h;
     /* Set the view port */
     glViewport(0, 0, (GLsizei) w, (GLsizei) h);
 
@@ -296,6 +342,7 @@ int main(int argc, char** argv) {
     glutReshapeFunc(& reshape);
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
     // Loop require by OpenGL
     glutMainLoop();
 }

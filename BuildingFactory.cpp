@@ -18,28 +18,27 @@
 
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
-BuildingFactory::BuildingFactory(float min, float max, float grid_size) : min(min), max(max), grid_size(grid_size) {
+BuildingFactory::BuildingFactory(int min, int max, int grid_size) : min(min), max(max), grid_size(grid_size) {
     srand (time(NULL));
 }
 
 void BuildingFactory::draw() {
-    for(int i=0; i<buildings.size(); i++)
-        buildings[i]->draw();
+    for(Building* building : buildings) {
+        if(building->isDisplay())
+            building->draw();
+    }
+
 
 }
 
 void BuildingFactory::generate() {
+    std::cout << "Generating" << std::endl;
 
-    for (GLfloat i = min; i < max; i+=1.f) {
-        for (GLfloat j = min; j < max; j += 1.f) {
-            if(     ((int) i+6)%6 == 5 ||
-                    ((int) i+6)%6 == 0 ||
-                    ((int) i+6)%6 == 1 ||
-                    ((int) j+6)%6 == 5 ||
-                    ((int) j+6)%6 == 0 ||
-                    ((int) j+6)%6 == 1
-                )
+    for (int i =  min; i < max; i++) {
+        for (int j =  min; j < max; j++) {
+            if((i + 20*6) % 6 == 1 || (j + 20*6) % 6 == 1 || (i + 20*6) % 6 == 0 || (j + 20*6) % 6 == 0)
                 continue;
 
             int draw = rand();
@@ -51,12 +50,15 @@ void BuildingFactory::generate() {
             float gGen = (rand()%10000)/10000.0f;
             float bGen = (rand()%10000)/10000.0f;
 
-            buildings.push_back(new Building(i, j, i-1, j-1, rand()%10+1, rGen, gGen, bGen));
+            int type = rand() %3;
+
+            buildings.push_back(new Building(i, j, rand()%10+1, rGen, gGen, bGen, type));
+            std::cout << buildings.size() << std::endl;
         }
     }
 }
 
-const std::vector<Building*> &BuildingFactory::getBuildings() const {
+std::vector<Building*> &BuildingFactory::getBuildings()  {
     return buildings;
 }
 
