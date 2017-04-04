@@ -196,7 +196,8 @@ void myClick(int button, int state, int x, int y)
      b = pixel_color[2]/(INT_MAX*1.0f);
     //std::cout << "r: " << r << " g: " << g << " b: " << b << std::endl;
 
-    for(Building* building : buildingFactory.getBuildings()) {
+    for(int i=0; i<buildingFactory.getBuildings().size(); i++) {
+        Building* building = buildingFactory.getBuildings()[i];
         float deltaR = r - building->getR();
         float deltaG = g - building->getG();
         float deltaB = b - building->getB();

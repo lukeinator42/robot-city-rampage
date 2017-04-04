@@ -25,11 +25,10 @@ BuildingFactory::BuildingFactory(int min, int max, int grid_size) : min(min), ma
 }
 
 void BuildingFactory::draw() {
-    for(Building* building : buildings) {
-        if(building->isDisplay())
-            building->draw();
+    for(int i=0; i<buildings.size(); i++) {
+        if(buildings[i]->isDisplay())
+            buildings[i]->draw();
     }
-
 
 }
 
@@ -53,7 +52,6 @@ void BuildingFactory::generate() {
             int type = rand() %3;
 
             buildings.push_back(new Building(i, j, rand()%10+1, rGen, gGen, bGen, type));
-            std::cout << buildings.size() << std::endl;
         }
     }
 }
