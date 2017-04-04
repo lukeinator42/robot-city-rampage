@@ -226,14 +226,17 @@ void myClick(int button, int state, int x, int y)
 //
 // Used for printing on the screen
 //
-static void PrintString(void *font, char *str)
+void PrintString(float x, float y, float z, char *str)
 {
-   int i,len=strlen(str);
+   //set the position of the text in the window using the x and y coordinates
+   glRasterPos3f (x+0.7f, y+0.1f, z-2.f);
+   //get the length of the string to display
+   int len = (int) strlen(str);
 
-   for(i=0;i < len; i++)
-      glutBitmapCharacter(font,*str++);
+   //loop to display character by character
+   for (int i = 0; i < len; i++)
+   { glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, str[i]); }
 }
-
 
 //
 // Main Drawing done here
@@ -275,22 +278,18 @@ void draw()
     /* end of temp-bot */
 
 
-    /* Testing of splashing "pause"
-       when paused.
+    // Testing of splashing "pause" when paused.
     if(!PAUSEBOOL)
     {
        glPushMatrix();
        glColor3f(1.f, 1.f, 1.f);
        char buf[80];
        sprintf(buf, "%s", "PAUSED");
-       glRasterPos2i(botX, 1.5*botZ);
-       PrintString(GLUT_BITMAP_HELVETICA_12, buf);
+       PrintString(botX, botY, botZ, buf);
        glLoadIdentity();
        glPopMatrix();
     }
-    */
-
-    
+        
     glutSwapBuffers();
 }
 
