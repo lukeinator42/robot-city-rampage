@@ -9,6 +9,8 @@
 #endif
 
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "Landscape.h"
 #include "Building.h"
@@ -176,6 +178,19 @@ void myClick(int button, int state, int x, int y)
    }
 }
 
+
+//
+// Used for printing on the screen
+//
+static void PrintString(void *font, char *str)
+{
+   int i,len=strlen(str);
+
+   for(i=0;i < len; i++)
+      glutBitmapCharacter(font,*str++);
+}
+
+
 //
 // Main Drawing done here
 // 
@@ -194,7 +209,7 @@ void draw()
     gluLookAt(EyeX, EyeY, EyeZ, /*    Eye    */
               LaX, LaY, LaZ,    /*  Look at  */
               0.0, 1.0, 0.0);   /* Up vector */
-  
+    
     /* Draw the landscaps */
     landscape.drawCityGround();
     
@@ -213,8 +228,25 @@ void draw()
     R.draw(antrot,headrot);
     glLoadIdentity ();
     glPopMatrix ();
-    //testfloat +=30;
     /* end of temp-bot */
+
+
+    /* Testing of splashing "pause"
+       when paused.
+    if(!PAUSEBOOL)
+    {
+       glPushMatrix();
+       glColor3f(1.f, 1.f, 1.f);
+       char buf[80];
+       sprintf(buf, "%s", "PAUSED");
+       glRasterPos2i(botX, 1.5*botZ);
+       PrintString(GLUT_BITMAP_HELVETICA_12, buf);
+       glLoadIdentity();
+       glPopMatrix();
+    }
+    */
+
+    
     glutSwapBuffers();
 }
 
