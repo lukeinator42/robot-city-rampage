@@ -198,6 +198,7 @@ void myClick(int button, int state, int x, int y)
 
     for(int i=0; i<buildingFactory.getBuildings().size(); i++) {
         Building* building = buildingFactory.getBuildings()[i];
+
         float deltaR = r - building->getR();
         float deltaG = g - building->getG();
         float deltaB = b - building->getB();
@@ -213,7 +214,7 @@ void myClick(int button, int state, int x, int y)
 
         if( deltaR < EPS && deltaG < EPS && deltaB < EPS) {
             building->setDisplay(false);
-            //break;
+            break;
         }
     }
 

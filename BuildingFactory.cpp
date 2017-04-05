@@ -26,7 +26,6 @@ BuildingFactory::BuildingFactory(int min, int max, int grid_size) : min(min), ma
 
 void BuildingFactory::draw() {
     for(int i=0; i<buildings.size(); i++) {
-        if(buildings[i]->isDisplay())
             buildings[i]->draw();
     }
 
@@ -35,8 +34,8 @@ void BuildingFactory::draw() {
 void BuildingFactory::generate() {
     std::cout << "Generating" << std::endl;
 
-    for (int i =  min; i < max; i++) {
-        for (int j =  min; j < max; j++) {
+    for (int i =  min; i <= max; i++) {
+        for (int j =  min; j <= max; j++) {
             if((i + 20*6) % 6 == 1 || (j + 20*6) % 6 == 1 || (i + 20*6) % 6 == 0 || (j + 20*6) % 6 == 0)
                 continue;
 

@@ -6,6 +6,15 @@
 #define HW_OPENGL_BUILDING_H
 #include <cstdlib>
 #include <ctime>
+#ifdef __APPLE__
+#  include <OpenGL/gl.h>
+#  include <OpenGL/glu.h>
+#  include <GLUT/glut.h>
+#else
+#  include <GL/gl.h>
+#  include <GL/glu.h>
+#  include <GL/glut.h>
+#endif
 
 
 class Building {
@@ -30,10 +39,12 @@ public:
 private:
     int type;
     bool display;
+
 public:
     bool isDisplay() const;
 
     void setDisplay(bool display);
+
 
 };
 

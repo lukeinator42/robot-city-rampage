@@ -6,17 +6,11 @@
 #include <algorithm>
 #include <string.h>
 
-#ifdef __APPLE__
-#  include <OpenGL/gl.h>
-#  include <OpenGL/glu.h>
-#  include <GLUT/glut.h>
-#else
-#  include <GL/gl.h>
-#  include <GL/glu.h>
-#  include <GL/glut.h>
-#endif
+
 
 void Building::draw() {
+    if(!display)
+        return;
 
 //    glBegin(GL_QUADS);
 //
@@ -56,16 +50,29 @@ void Building::draw() {
 
    // glEnd();
     glPushMatrix();
-    glTranslatef(x-0.5f, 0.0, y-0.5f);
-    glScalef(1.0, height, 1.0);
+    glColor3f(r, g, b);
 
 
+
+
+
+    if(type == 0) {
+        glTranslatef(x-0.5f, height/2, y-0.5f);
+        glScalef(1.0, height, 1.0);
         glutSolidCube(1.0);
 
+    } else if(type == 1) {
+        glTranslatef(x-0.5f, height/2, y-0.5f);
+        glScalef(0.25, height, 0.25);
+        glutSolidOctahedron();
+    } else if(type == 2) {
+        glTranslatef(x-0.5f, height/2, y-0.5f);
+        glScalef(0.25, height, 0.25);
+        glutSolidTetrahedron();
+    }
 
 
 
-    glColor3f(r, g, b);
     glPopMatrix();
 }
 
