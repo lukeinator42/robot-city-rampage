@@ -17,12 +17,15 @@
 #include "Building.h"
 #include "BuildingFactory.h"
 #include "Robot.h"
+#include "Explosion.h"
 
 Robot R;
 
 Landscape landscape(-59.0f, 59.0f, 118);
 
 BuildingFactory buildingFactory(-59, 59, 118);
+
+Explosion explosion(0.0f, 0.0f);
 
 int width;
 int height;
@@ -273,6 +276,9 @@ void draw()
     /* Draw the buildings */
     buildingFactory.draw();
 
+    explosion.draw();
+
+
     /* temp robot */
     glPushMatrix ();
     //glColor3f (0.0, 0.0, 0.0);
@@ -293,6 +299,12 @@ void draw()
         if(projectilePos == 15) {
             projectilePos = 0;
             destroyBuilding->setDisplay(false);
+            explosion.setX(destroyBuilding->getX());
+            explosion.setY(destroyBuilding->getY());
+            explosion.setR(destroyBuilding->getR());
+            explosion.setG(destroyBuilding->getG());
+            explosion.setB(destroyBuilding->getB());
+            explosion.start();
         }
 
         float px = (destroyBuilding->getX()-botX)*(projectilePos/10.0f);

@@ -30,7 +30,7 @@ endif(NOT OPENGL_FOUND)
 #########################################################
 # Include Files
 #########################################################
-add_executable(test main.cpp Landscape.cpp Landscape.h Robot.cpp Robot.h Building.cpp Building.h BuildingFactory.cpp BuildingFactory.h)
+add_executable(test main.cpp Landscape.cpp Landscape.h Robot.cpp Robot.h Building.cpp Building.h BuildingFactory.cpp BuildingFactory.h Explosion.cpp Explosion.h)
 
 target_include_directories(test PRIVATE ${GlmIncludeDir})
 

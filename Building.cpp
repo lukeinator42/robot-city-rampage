@@ -62,12 +62,14 @@ void Building::draw() {
         glutSolidCube(1.0);
 
     } else if(type == 1) {
-        glTranslatef(x-0.5f, height/2, y-0.5f);
-        glScalef(0.25, height, 0.25);
-        glutSolidOctahedron();
+        glTranslatef(x-0.5f,0.0f, y-0.5f);
+        glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+       // glScalef(0.25, height, 0.25);
+        glutSolidCone(0.5f, height, 10, 10);
     } else if(type == 2) {
-        glTranslatef(x-0.5f, height/2, y-0.5f);
-        glScalef(0.25, height, 0.25);
+        glTranslatef(x-0.5f, 0.0f, y-0.5f);
+        glScalef(0.75, height*2.0f, 0.75);
+        //glutSolidIcosahedron();
         glutSolidTetrahedron();
     }
 
