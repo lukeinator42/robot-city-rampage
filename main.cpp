@@ -7,7 +7,7 @@
 #  include <GL/glu.h>
 #  include <GL/glut.h>
 #endif
-
+#include <climits>
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -28,6 +28,11 @@ int width;
 int height;
 
 const float EPS = 0.01;
+
+float targetX;
+float targetY;
+int   projectilePos=0;
+Building* destroyBuilding;
 
 /* Look at Variables */
 float EyeX = 0.f;
@@ -214,7 +219,7 @@ void myClick(int button, int state, int x, int y)
 
         if( deltaR < EPS && deltaG < EPS && deltaB < EPS) {
             building->setDisplay(false);
-            break;
+            //break;
         }
     }
 
@@ -278,6 +283,16 @@ void draw()
     glLoadIdentity ();
     glPopMatrix ();
     /* end of temp-bot */
+
+    /* projectile */
+    if(projectilePos != 0) {
+       if(projectilePos == 10) 
+	  projectilePos == 0;
+
+       float px = 
+	  
+       
+    }
 
 
     // Testing of splashing "pause" when paused.
