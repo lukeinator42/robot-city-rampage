@@ -218,7 +218,9 @@ void myClick(int button, int state, int x, int y)
             deltaB *= -1.0f;
 
         if( deltaR < EPS && deltaG < EPS && deltaB < EPS) {
-            building->setDisplay(false);
+            //building->setDisplay(false);
+            destroyBuilding = building;
+            projectilePos = 1;
             //break;
         }
     }
@@ -286,12 +288,21 @@ void draw()
 
     /* projectile */
     if(projectilePos != 0) {
-       if(projectilePos == 10) 
-	  projectilePos == 0;
+        projectilePos++;
 
-       float px = 
-	  
-       
+        if(projectilePos == 15) {
+            projectilePos = 0;
+            destroyBuilding->setDisplay(false);
+        }
+
+        float px = (destroyBuilding->getX()-botX)*(projectilePos/10.0f);
+        float py = (destroyBuilding->getY()-botZ)*(projectilePos/10.0f);
+
+
+        glTranslatef(px, 0.15f, py);
+        glTranslatef (botX, 0.0f, botZ);
+        glutSolidSphere(0.15f, 10, 10);
+
     }
 
 

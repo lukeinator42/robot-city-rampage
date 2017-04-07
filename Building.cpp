@@ -95,3 +95,11 @@ bool Building::isDisplay() const {
 void Building::setDisplay(bool d) {
     this->display = d;
 }
+
+float Building::getX() const {
+    return x;
+}
+
+float Building::getY() const {
+    return y;
+}

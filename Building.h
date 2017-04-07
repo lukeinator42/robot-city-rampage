@@ -30,6 +30,11 @@ public:
 private:
     float x, y,  height, r, g, b;
 public:
+    float getX() const;
+
+    float getY() const;
+
+public:
     float getR() const;
 
     float getG() const;
