@@ -22,22 +22,23 @@ void Explosion::setY(float y) {
     Explosion::y = y;
 }
 void Explosion::draw() {
-    if(radius<200.0f && exploding) {
+    if(radius<10.0f && exploding) {
 
         for(int j=0; j<10; j++) {
+            float ev = 0.1f;
 
-            for (float i = 0.0f; i < acos(-1.0f); i++) {
+            for (float i = (float) -acos(-1.0f); i < acos(-1.0f); i+=ev) {
                 glPushMatrix();
                 glTranslatef(x + radius * (float) cos(i), (float) j, y + radius * (float) sin(i));
                 glutSolidCube(0.1f);
                 glColor3f(r, g, b);
                 glPopMatrix();
-                i += 0.2f;
+                ev += 0.05f;
             }
 
         }
 
-    radius += 0.4f;
+    radius += 0.6f;
 
     } else {
         radius = 0.0f;
