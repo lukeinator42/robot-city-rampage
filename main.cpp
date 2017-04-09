@@ -52,16 +52,16 @@ float botZ = 0.f;
 
 int rotNorm = 0;
 float rot = 0.f;
-float pos[2][4] = { {0.f, 1.f,  0.f, -1.f},
-		    {1.f,  0.f, -1.f, 0.f} };
+float pos[2][4] = { {0.f,  1.f,  0.f, -1.f},
+		    {1.f,  0.f, -1.f,  0.f} };
 float antrot = 0;
 float headrot = 0;
 //                           EyeX   EyeY  EyeZ
 float viewChange[5][3] = { {  0.f,  EyeY, -5.f },   // F4
-			   { -2.f,  EyeY, -2.f },   // F5
-			   {  2.f,  EyeY, -2.f },   // F6
-			   {  2.f,  EyeY,  2.f },   // F7
-			   { -2.f,  EyeY,  2.f } }; // F8
+			   {  2.f,  EyeY, -2.f },   // F5
+			   { -2.f,  EyeY, -2.f },   // F6
+			   { -2.f,  EyeY,  2.f },   // F7
+			   {  2.f,  EyeY,  2.f } }; // F8
 
 /* PAUSE */
 bool PAUSEBOOL = true;
@@ -159,10 +159,10 @@ void specialCBKey(int key, int x, int y)
       
       /* Look at Changing Commands */
       else if(key == GLUT_KEY_F4){ view(0); }
-      else if(key == GLUT_KEY_F5){ view(2); }
-      else if(key == GLUT_KEY_F6){ view(1); }
-      else if(key == GLUT_KEY_F7){ view(4); }
-      else if(key == GLUT_KEY_F8){ view(3); }
+      else if(key == GLUT_KEY_F5){ view(1); }
+      else if(key == GLUT_KEY_F6){ view(2); }
+      else if(key == GLUT_KEY_F7){ view(3); }
+      else if(key == GLUT_KEY_F8){ view(4); }
    }
 }
 
@@ -227,11 +227,6 @@ void myClick(int button, int state, int x, int y)
             //break;
         }
     }
-
-
-
-
-
 }
 
 
@@ -255,7 +250,6 @@ void PrintString(float x, float y, float z, char *str)
 // 
 void draw()
 {
-
    /* Clear buffer and set backdrop color */
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    glClearColor(0.1, 0.39, 0.88, 1.0);
@@ -271,26 +265,22 @@ void draw()
     
     /* Draw the landscaps */
     landscape.drawCityGround();
-    
   
     /* Draw the buildings */
     buildingFactory.draw();
 
     explosion.draw();
 
-
-    /* temp robot */
+    /* robot */
     glPushMatrix ();
-    //glColor3f (0.0, 0.0, 0.0);
     glTranslatef (botX, botY, botZ);
-    
     glRotatef (rot, 0.f, 1.f, 0.f);
     glTranslatef(-0.5f,0,-0.5);
     glScalef(0.1,0.1,0.1);
     R.draw(antrot,headrot);
     glLoadIdentity ();
     glPopMatrix ();
-    /* end of temp-bot */
+    /* end of robot */
 
     /* projectile */
     if(projectilePos != 0) {
@@ -309,16 +299,14 @@ void draw()
 
         float px = (destroyBuilding->getX()-botX)*(projectilePos/10.0f);
         float py = (destroyBuilding->getY()-botZ)*(projectilePos/10.0f);
-
-
+	
         glTranslatef(px, 0.15f, py);
         glTranslatef (botX, 0.0f, botZ);
         glutSolidSphere(0.15f, 10, 10);
 
     }
 
-
-    // Testing of splashing "pause" when paused.
+    // splash "pause" when paused.
     if(!PAUSEBOOL)
     {
        glPushMatrix();
@@ -348,7 +336,6 @@ void reshape(int w, int h)
               -1.0, 1.0,   /* bottom and top boundary */
               1.5, 200.0); /* near and far boundary   */
     glMatrixMode(GL_MODELVIEW);
-
 }
 
 int main(int argc, char** argv) {
@@ -382,6 +369,7 @@ int main(int argc, char** argv) {
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
+    
     // Loop require by OpenGL
     glutMainLoop();
 }
