@@ -35,7 +35,7 @@ const float EPS = 0.01;
 float targetX;
 float targetY;
 int   projectilePos=0;
-Building* destroyBuilding = nullptr;
+Building* destroyBuilding = NULL;
 
 /* Look at Variables */
 float EyeX = 0.f;
@@ -222,7 +222,7 @@ void myClick(int button, int state, int x, int y)
 
         if( deltaR < EPS && deltaG < EPS && deltaB < EPS) {
             //building->setDisplay(false);
-            if(destroyBuilding != nullptr && destroyBuilding->isDisplay())
+            if(destroyBuilding != NULL && destroyBuilding->isDisplay())
                 destroyBuilding->setDisplay(false);
 
             destroyBuilding = building;

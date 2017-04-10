@@ -30,13 +30,13 @@ endif(NOT OPENGL_FOUND)
 #########################################################
 # Include Files
 #########################################################
-add_executable(test main.cpp Landscape.cpp Landscape.h Robot.cpp Robot.h Building.cpp Building.h BuildingFactory.cpp BuildingFactory.h Explosion.cpp Explosion.h)
+add_executable(robot-city-rampage main.cpp Landscape.cpp Landscape.h Robot.cpp Robot.h Building.cpp Building.h BuildingFactory.cpp BuildingFactory.h Explosion.cpp Explosion.h)
 
-target_include_directories(test PRIVATE ${GlmIncludeDir})
+target_include_directories(robot-city-rampage PRIVATE ${GlmIncludeDir})
 
 ########################################################
 # Linking & stuff
 #########################################################
 
   # create the program "test"
-  target_link_libraries(test ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
+  target_link_libraries(robot-city-rampage ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
