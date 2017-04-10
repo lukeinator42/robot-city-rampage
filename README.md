@@ -1,14 +1,14 @@
-### Instructions
+### Installation Instructions
 
-run 
+To build and run the project first create a build directory inside the project, like so:
 
 ``` mkdir build && cd build ```
 
-then 
+then run cmake:
 
 ``` cmake .. ```
 
-then 
+now you can build the project using make:
 
 ``` make ```
 
