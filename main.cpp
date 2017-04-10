@@ -35,7 +35,7 @@ const float EPS = 0.01;
 float targetX;
 float targetY;
 int   projectilePos=0;
-Building* destroyBuilding;
+Building* destroyBuilding = nullptr;
 
 /* Look at Variables */
 float EyeX = 0.f;
@@ -197,12 +197,12 @@ void myClick(int button, int state, int x, int y)
 
 
     glReadPixels(x, width-y, 1, 1, GL_RGB, GL_INT, &pixel_color);
-    printf("PIXEL: %f - %f - %f\n", pixel_color[0]/(INT_MAX*1.0), pixel_color[1]/(INT_MAX*1.0), pixel_color[2]/(INT_MAX*1.0));
+
 
      r = pixel_color[0]/(INT_MAX*1.0f);
      g = pixel_color[1]/(INT_MAX*1.0f);
      b = pixel_color[2]/(INT_MAX*1.0f);
-    //std::cout << "r: " << r << " g: " << g << " b: " << b << std::endl;
+
 
     for(int i=0; i<buildingFactory.getBuildings().size(); i++) {
         Building* building = buildingFactory.getBuildings()[i];
@@ -222,6 +222,9 @@ void myClick(int button, int state, int x, int y)
 
         if( deltaR < EPS && deltaG < EPS && deltaB < EPS) {
             //building->setDisplay(false);
+            if(destroyBuilding != nullptr && destroyBuilding->isDisplay())
+                destroyBuilding->setDisplay(false);
+
             destroyBuilding = building;
             projectilePos = 1;
             //break;
